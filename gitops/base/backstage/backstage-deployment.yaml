@@ -29,6 +29,17 @@ spec:
           ports:
             - name: http
               containerPort: 7007
+          volumeMounts:
+            - name: app-config
+              mountPath: /app/app-config.yaml
+              subPath: app-config.yaml
+      volumes:
+      - name: app-config
+        configMap:
+          name: app-config
+          items: 
+            - key: app-config.yaml
+              path: app-config.yaml
 ---
 apiVersion: v1
 kind: Service
