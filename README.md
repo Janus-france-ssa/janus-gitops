@@ -22,6 +22,19 @@ Create the argoCD Application
 oc apply -f gitops/argocd/application.yaml
 ```
 
+You need to enable Database Creation in psql pod
+
+NOTE: Todo make it with post hook
+
+```shell
+oc rsh postgres-78b8db49c9-k9trn
+
+psql
+
+ALTER USER feven WITH CREATEDB;
+```
+
+
 ## Build your own backstage
 
 Create your backstage app
