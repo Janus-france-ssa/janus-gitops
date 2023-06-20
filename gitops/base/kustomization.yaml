@@ -5,3 +5,4 @@ resources:
   - ./backstage/backstage-deployment.yaml  
   - ./backstage/backstage-sa.yaml  
   - ./backstage/postgres-deployment.yaml
+  - ./backstage/backstage-app-config.yaml

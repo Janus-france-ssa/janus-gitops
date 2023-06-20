@@ -1,0 +1,4 @@
+/// <reference types="react" />
+import { TextWidgetProps } from "../TextWidget";
+declare const PasswordWidget: (props: TextWidgetProps) => JSX.Element;
+export default PasswordWidget;

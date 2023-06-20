@@ -1,0 +1,6 @@
+/// <reference types="react" />
+import { StandardTextFieldProps as TextFieldProps } from "@material-ui/core/TextField";
+import { WidgetProps } from "@rjsf/core";
+export declare type TextWidgetProps = WidgetProps & Pick<TextFieldProps, Exclude<keyof TextFieldProps, 'onBlur' | 'onFocus'>>;
+declare const TextWidget: ({ id, placeholder, required, readonly, disabled, type, label, value, onChange, onBlur, onFocus, autofocus, options, schema, uiSchema, rawErrors, formContext, registry, ...textFieldProps }: TextWidgetProps) => JSX.Element;
+export default TextWidget;
