@@ -20,6 +20,7 @@ import {
   ServerTokenManager,
 } from '@backstage/backend-common';
 import { TaskScheduler } from '@backstage/backend-tasks';
+import kubernetes from './plugins/kubernetes';
 import { Config } from '@backstage/config';
 import app from './plugins/app';
 import auth from './plugins/auth';
@@ -77,6 +78,8 @@ async function main() {
     logger: getRootLogger(),
   });
   const createEnv = makeCreateEnv(config);
+  const kubernetesEnv = useHotMemoize(module, () => createEnv('kubernetes'));
+
 
   const catalogEnv = useHotMemoize(module, () => createEnv('catalog'));
   const scaffolderEnv = useHotMemoize(module, () => createEnv('scaffolder'));
@@ -93,6 +96,7 @@ async function main() {
   apiRouter.use('/techdocs', await techdocs(techdocsEnv));
   apiRouter.use('/proxy', await proxy(proxyEnv));
   apiRouter.use('/search', await search(searchEnv));
+  apiRouter.use('/kubernetes', await kubernetes(kubernetesEnv));
 
   // Add backends ABOVE this line; this 404 handler is the catch-all fallback
   apiRouter.use(notFoundHandler());

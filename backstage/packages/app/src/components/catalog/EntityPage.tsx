@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button, Grid } from '@material-ui/core';
+import { TopologyPage } from '@janus-idp/backstage-plugin-topology';
 import {
   EntityApiDefinitionCard,
   EntityConsumedApisCard,
@@ -8,6 +9,9 @@ import {
   EntityProvidedApisCard,
   EntityProvidingComponentsCard,
 } from '@backstage/plugin-api-docs';
+import { 
+  EntityKubernetesContent 
+} from '@backstage/plugin-kubernetes';
 import {
   EntityAboutCard,
   EntityDependsOnComponentsCard,
@@ -71,7 +75,7 @@ const cicdContent = (
     <EntitySwitch.Case if={isGithubActionsAvailable}>
       <EntityGithubActionsContent />
     </EntitySwitch.Case>
-
+    
     <EntitySwitch.Case>
       <EmptyState
         title="No CI/CD available for this entity"
@@ -135,11 +139,15 @@ const serviceEntityPage = (
     <EntityLayout.Route path="/" title="Overview">
       {overviewContent}
     </EntityLayout.Route>
-
+    <EntityLayout.Route path="/kubernetes" title="Kubernetes">
+      <EntityKubernetesContent refreshIntervalMs={30000} />
+    </EntityLayout.Route>
     <EntityLayout.Route path="/ci-cd" title="CI/CD">
       {cicdContent}
     </EntityLayout.Route>
-
+    <EntityLayout.Route path="/topology" title="Topology">
+      <TopologyPage />
+    </EntityLayout.Route>
     <EntityLayout.Route path="/api" title="API">
       <Grid container spacing={3} alignItems="stretch">
         <Grid item md={6}>
