@@ -1,0 +1,19 @@
+kind: KeycloakUser
+apiVersion: keycloak.org/v1alpha1
+metadata:
+  name: feven-realm-user
+  labels:
+    app: sso
+  namespace: sso
+spec:
+  user:
+    username: feven
+    firstName: feven
+    lastName: rehdat
+    email: feven@redhat.com
+    enabled: true
+    emailVerified: false
+  realmSelector:
+    matchLabels:
+      app: sso
+

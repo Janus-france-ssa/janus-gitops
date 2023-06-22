@@ -9,3 +9,6 @@ resources:
 
 #keycloack
   - ./keycloack/keycloack.yaml
+  - ./keycloack/keycloackclient.yaml  
+  - ./keycloack/keycloackuser.yaml  
+  - ./keycloack/realm.yaml

@@ -1,0 +1,16 @@
+kind: KeycloakClient
+apiVersion: keycloak.org/v1alpha1
+metadata:
+  name: client-secret
+  labels:
+    app: sso
+  namespace: sso
+spec:
+  realmSelector:
+    matchLabels:
+      app: sso
+  client:
+    clientId: client-secret
+    secret: client-secret
+    clientAuthenticatorType: client-secret
+
