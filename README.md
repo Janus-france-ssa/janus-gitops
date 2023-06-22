@@ -5,8 +5,8 @@
 This repo contains the material to deploy a janus on openshift.
 
 ```shell
-oc apply -f gitops/sub.yaml
 oc apply -f gitops/ns.yaml
+oc apply -f gitops/sub.yaml
 oc apply -f gitops/ClusterRoleBinding.yaml 
 ```
 

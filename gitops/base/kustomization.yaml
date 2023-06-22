@@ -6,3 +6,7 @@ resources:
   - ./backstage/backstage-sa.yaml  
   - ./backstage/postgres-deployment.yaml
   - ./backstage/backstage-app-config.yaml
+
+#keycloack
+  - ./keycloack/keycloack.yaml
+  - ./keycloack/

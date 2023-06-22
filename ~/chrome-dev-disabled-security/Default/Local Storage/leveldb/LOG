@@ -1,5 +1,0 @@
-2023/06/22-09:47:17.416 3 Creating DB /home/feven/Desktop/SA/backstage/~/chrome-dev-disabled-security/Default/Local Storage/leveldb since it was missing.
-2023/06/22-09:47:17.422 3 Reusing MANIFEST /home/feven/Desktop/SA/backstage/~/chrome-dev-disabled-security/Default/Local Storage/leveldb/MANIFEST-000001
-2023/06/22-09:48:33.474 5 Level-0 table #5: started
-2023/06/22-09:48:33.477 5 Level-0 table #5: 27167 bytes OK
-2023/06/22-09:48:33.479 5 Delete type=0 #3
