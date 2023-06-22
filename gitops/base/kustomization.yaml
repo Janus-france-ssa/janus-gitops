@@ -9,4 +9,3 @@ resources:
 
 #keycloack
   - ./keycloack/keycloack.yaml
-  - ./keycloack/
