@@ -1,3 +1,2 @@
-2023/06/21-10:50:32.804 f4459 Reusing MANIFEST /home/feven/Desktop/SA/backstage/~/chrome-dev-disabled-security/Default/Site Characteristics Database/MANIFEST-000001
-2023/06/21-10:50:32.804 f4459 Recovering log #3
-2023/06/21-10:50:32.804 f4459 Reusing old log /home/feven/Desktop/SA/backstage/~/chrome-dev-disabled-security/Default/Site Characteristics Database/000003.log 
+2023/06/22-09:47:17.413 10fb97 Creating DB /home/feven/Desktop/SA/backstage/~/chrome-dev-disabled-security/Default/Site Characteristics Database since it was missing.
+2023/06/22-09:47:17.416 10fb97 Reusing MANIFEST /home/feven/Desktop/SA/backstage/~/chrome-dev-disabled-security/Default/Site Characteristics Database/MANIFEST-000001

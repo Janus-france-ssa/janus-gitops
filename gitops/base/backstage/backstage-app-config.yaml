@@ -28,10 +28,10 @@ data:
         connect-src: ["'self'", 'http:', 'https:']
         # Content-Security-Policy directives follow the Helmet format: https://helmetjs.github.io/#reference
         # Default Helmet Content-Security-Policy values can be removed by setting the key to false
-      cors:
-        origin: http://localhost:3000
-        methods: [GET, HEAD, PATCH, POST, PUT, DELETE]
-        credentials: true
+        #cors:
+        #origin: http://localhost:3000
+        #methods: [GET, HEAD, PATCH, POST, PUT, DELETE]
+        #credentials: false
       # This is for local development only, it is not recommended to use this in production
       # The production database configuration is stored in app-config.production.yaml
       database:
@@ -116,24 +116,24 @@ data:
           rules:
             - allow: [User, Group]
 
-      kubernetes:
-        serviceLocatorMethod:
-          type: multiTenant
-        clusterLocatorMethods:
-          - type: config
-            clusters:
-              - url: https://kubernetes.default.svc/
-                name: local
-                caFile: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
-                authProvider: serviceAccount
-                # don't specify this attribute to force lookup in pod in cluster
-                # serviceAccountToken: ''
-                dashboardUrl: https://console-openshift-console.apps.feve-rosa.pkgo.p1.openshiftapps.com/ ## path to update
-                dashboardApp: openshift
-                skipTLSVerify: false
-                skipMetricsLookup: false
-        customResources:
-          - group: 'route.openshift.io'
-            apiVersion: 'v1'
-            plural: 'routes'
+    kubernetes:
+      serviceLocatorMethod:
+        type: multiTenant
+      clusterLocatorMethods:
+        - type: config
+          clusters:
+            - url: https://kubernetes.default.svc/
+              name: local
+              caFile: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+              authProvider: serviceAccount
+              # don't specify this attribute to force lookup in pod in cluster
+              # serviceAccountToken: ''
+              dashboardUrl: https://console-openshift-console.apps.feve-rosa.pkgo.p1.openshiftapps.com/ ## path to update
+              dashboardApp: openshift
+              skipTLSVerify: false
+              skipMetricsLookup: false
+      customResources:
+        - group: 'route.openshift.io'
+          apiVersion: 'v1'
+          plural: 'routes'
 

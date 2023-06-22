@@ -6,3 +6,11 @@ metadata:
     openshift.io/node-selector: ""
   labels:
     argocd.argoproj.io/managed-by: openshift-gitops
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  annotations:
+    openshift.io/description: "SSO project"
+    openshift.io/display-name: "Red Hat SSO"
+  name: sso

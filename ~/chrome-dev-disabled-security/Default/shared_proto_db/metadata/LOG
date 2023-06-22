@@ -1,3 +1,2 @@
-2023/06/21-10:50:32.911 f448b Reusing MANIFEST /home/feven/Desktop/SA/backstage/~/chrome-dev-disabled-security/Default/shared_proto_db/metadata/MANIFEST-000001
-2023/06/21-10:50:32.912 f448b Recovering log #3
-2023/06/21-10:50:32.912 f448b Reusing old log /home/feven/Desktop/SA/backstage/~/chrome-dev-disabled-security/Default/shared_proto_db/metadata/000003.log 
+2023/06/22-09:47:17.436 10fb8b Creating DB /home/feven/Desktop/SA/backstage/~/chrome-dev-disabled-security/Default/shared_proto_db/metadata since it was missing.
+2023/06/22-09:47:17.439 10fb8b Reusing MANIFEST /home/feven/Desktop/SA/backstage/~/chrome-dev-disabled-security/Default/shared_proto_db/metadata/MANIFEST-000001
