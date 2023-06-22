@@ -3,6 +3,9 @@ apiVersion: keycloak.org/v1alpha1
 metadata:
   name: keycloakrealm
   namespace: sso
+  labels:
+    app: sso
+    realm: basic
 spec:
   realm:
     id: basic

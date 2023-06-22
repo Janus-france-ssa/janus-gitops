@@ -4,6 +4,8 @@ metadata:
   name: client-secret
   labels:
     app: sso
+    realm: basic
+    client: client-secret
   namespace: sso
 spec:
   realmSelector:
@@ -12,6 +14,6 @@ spec:
       realm: basic
   client:
     clientId: client-secret
-    secret: client-secret
-    clientAuthenticatorType: client-secret
+      #secret: client-secret
+      #clientAuthenticatorType: client-secret
 
