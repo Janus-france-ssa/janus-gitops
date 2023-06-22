@@ -9,6 +9,7 @@ spec:
   realmSelector:
     matchLabels:
       app: sso
+      realm: basic
   client:
     clientId: client-secret
     secret: client-secret
