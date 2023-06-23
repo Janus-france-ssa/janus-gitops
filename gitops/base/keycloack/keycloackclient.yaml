@@ -12,8 +12,24 @@ spec:
     matchLabels:
       app: sso
       realm: basic
+  serviceAccountClientRoles:
+    realm-management:
+      - query-groups
+      - query-users
+      - view-users
   client:
     clientId: client-secret
       #secret: client-secret
-      #clientAuthenticatorType: client-secret
+    clientAuthenticatorType: client-secret
+    standardFlowEnabled: true
+    directAccessGrantsEnabled: true
+    implicitFlowEnabled: false
+    defaultClientScopes:
+      - profile
+        #- email
+      - roles
+    consentRequired: false
+    serviceAccountsEnabled: true
+    redirectUris:
+      - https://backstage-route-backstage.apps.feve-rosa.pkgo.p1.openshiftapps.com/oauth2/callback
 

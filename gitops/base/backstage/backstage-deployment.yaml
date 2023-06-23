@@ -22,6 +22,38 @@ spec:
       securityContext:
         runAsUser: 1000
       containers:
+        - resources: {}
+          terminationMessagePath: /dev/termination-log
+          name: janus-dev-oauth-proxy
+          env:
+            - name: OAUTH2_PROXY_CLIENT_ID
+              value: "client-secret"
+            - name: OAUTH2_PROXY_CLIENT_SECRET
+              value: "client-secret"
+            - name: OAUTH2_PROXY_COOKIE_SECRET
+              value: "YnRnZWJ3bXF1ZXNrdWFtZWN5cHZic2VmaHl4b3Fxc2k="
+            - name: OAUTH2_PROXY_OIDC_ISSUER_URL
+              value: >-
+                https://keycloak-sso.apps.feve-rosa.pkgo.p1.openshiftapps.com/auth/realms/basic
+          securityContext:
+            capabilities:
+              drop:
+                - ALL
+            runAsUser: 1000760000
+            runAsNonRoot: true
+            allowPrivilegeEscalation: false
+          ports:
+            - containerPort: 4180
+              protocol: TCP
+          imagePullPolicy: Always
+          terminationMessagePolicy: File
+          image: 'quay.io/oauth2-proxy/oauth2-proxy:latest'
+          args:
+            - '--provider=oidc'
+            - '--email-domain=*'
+            - '--upstream=http://localhost:7007'
+            - '--http-address=0.0.0.0:4180'
+            - '--skip-provider-button'
         - name: backstage
           image: quay.io/feven/backstage:latest
           securityContext:

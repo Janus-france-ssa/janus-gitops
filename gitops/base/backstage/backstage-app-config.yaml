@@ -84,6 +84,18 @@ data:
       # see https://backstage.io/docs/features/software-templates/configuration for software template options
 
     catalog:
+      providers:
+        keycloakOrg:
+          default:
+            baseUrl: https://keycloak-sso.apps.feve-rosa.pkgo.p1.openshiftapps.com/auth
+            loginRealm: basic
+            realm: basic
+            clientId: client-secret
+            clientSecret: client-secret
+            schedule: # optional; same options as in TaskScheduleDefinition
+              frequency: { minutes: 1 }
+              timeout: { minutes: 1 }
+              initialDelay: { seconds: 15 }
       import:
         entityFilename: catalog-info.yaml
         pullRequestBranchName: backstage-integration

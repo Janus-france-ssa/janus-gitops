@@ -13,6 +13,10 @@ spec:
     email: feven@redhat.com
     enabled: true
     emailVerified: false
+  credentials:
+    - type: password
+      value: redhat123
+      temporary: false
   realmSelector:
     matchLabels:
       app: sso
