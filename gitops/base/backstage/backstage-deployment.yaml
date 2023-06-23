@@ -85,7 +85,7 @@ spec:
     - name: http
       protocol: TCP
       port: 80
-      targetPort: http
+      targetPort: 4180
 ---
 apiVersion: route.openshift.io/v1
 kind: Route
