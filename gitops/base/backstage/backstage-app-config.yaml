@@ -87,7 +87,7 @@ data:
       providers:
         keycloakOrg:
           default:
-            baseUrl: https://keycloak-sso.apps.feve-rosa.pkgo.p1.openshiftapps.com/auth
+            baseUrl: https://keycloak-sso.apps.cluster-8plkk.8plkk.sandbox1485.opentlc.com/auth
             loginRealm: basic
             realm: basic
             clientId: client-secret
@@ -140,7 +140,7 @@ data:
               authProvider: serviceAccount
               # don't specify this attribute to force lookup in pod in cluster
               # serviceAccountToken: ''
-              dashboardUrl: https://console-openshift-console.apps.feve-rosa.pkgo.p1.openshiftapps.com/ ## path to update
+              dashboardUrl: https://console-openshift-console.apps.cluster-8plkk.8plkk.sandbox1485.opentlc.com ## path to update
               dashboardApp: openshift
               skipTLSVerify: false
               skipMetricsLookup: false

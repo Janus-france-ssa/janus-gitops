@@ -10,6 +10,17 @@ oc apply -f gitops/sub.yaml
 oc apply -f gitops/ClusterRoleBinding.yaml 
 ```
 
+Dans le fichier ```gitops/base/backstage/backstage-deployment.yaml``` remplace
+```OAUTH2_PROXY_OIDC_ISSUER_URL``` avec l'ingress correct pour votre domaine
+
+Dans le fichier ```gitops/base/backstage/backstage-app-config.yaml``` remplace ```dashboardUrl``` et ```baseUrl``` avec l'ingres correct pour votre domaine
+
+Dans le fichier ```gitops/base/keycloack/keycloackclient.yaml``` remplace redirectUris par l'url correct.
+
+
+
+
+
 Create the argoCD chain project
 
 ```shell
