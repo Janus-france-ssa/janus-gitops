@@ -19,8 +19,8 @@ spec:
       - view-users
   client:
     clientId: client-secret
-      #secret: client-secret
-    clientAuthenticatorType: client-secret
+    secret: client-secret
+      #clientAuthenticatorType: client-secret
     standardFlowEnabled: true
     directAccessGrantsEnabled: true
     implicitFlowEnabled: false
@@ -31,5 +31,5 @@ spec:
     consentRequired: false
     serviceAccountsEnabled: true
     redirectUris:
-      - https://backstage-route-backstage.apps.cluster-8plkk.8plkk.sandbox1485.opentlc.com/oauth2/callback
+      - https://backstage-route-backstage.apps.rosa-neve.kset.p1.openshiftapps.com/oauth2/callback
 

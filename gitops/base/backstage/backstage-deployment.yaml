@@ -34,7 +34,7 @@ spec:
               value: "YnRnZWJ3bXF1ZXNrdWFtZWN5cHZic2VmaHl4b3Fxc2k="
             - name: OAUTH2_PROXY_OIDC_ISSUER_URL
               value: >-
-                https://keycloak-sso.apps.cluster-8plkk.8plkk.sandbox1485.opentlc.com/auth/realms/basic
+                https://keycloak-sso.apps.rosa-neve.kset.p1.openshiftapps.com/auth/realms/basic
           securityContext:
             capabilities:
               drop:
@@ -85,7 +85,7 @@ spec:
     - name: http
       protocol: TCP
       port: 80
-      targetPort: 4180
+      targetPort: http #4180
 ---
 apiVersion: route.openshift.io/v1
 kind: Route

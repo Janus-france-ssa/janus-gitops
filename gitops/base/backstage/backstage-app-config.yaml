@@ -28,10 +28,10 @@ data:
         connect-src: ["'self'", 'http:', 'https:']
         # Content-Security-Policy directives follow the Helmet format: https://helmetjs.github.io/#reference
         # Default Helmet Content-Security-Policy values can be removed by setting the key to false
-        #cors:
-        #origin: http://localhost:3000
-        #methods: [GET, HEAD, PATCH, POST, PUT, DELETE]
-        #credentials: false
+      cors:
+        origin: https://backstage-route-backstage.apps.cluster-8plkk.8plkk.sandbox1485.opentlc.com/
+        methods: [GET, POST, PUT, DELETE]
+        credentials: true
       # This is for local development only, it is not recommended to use this in production
       # The production database configuration is stored in app-config.production.yaml
       database:
@@ -78,7 +78,8 @@ data:
 
     auth:
       # see https://backstage.io/docs/auth/ to learn about auth providers
-      providers: {}
+      providers: 
+        oauth2Proxy: {}
 
     scaffolder:
       # see https://backstage.io/docs/features/software-templates/configuration for software template options
@@ -87,7 +88,7 @@ data:
       providers:
         keycloakOrg:
           default:
-            baseUrl: https://keycloak-sso.apps.cluster-8plkk.8plkk.sandbox1485.opentlc.com/auth
+            baseUrl: https://keycloak-sso.apps.rosa-neve.kset.p1.openshiftapps.com/auth
             loginRealm: basic
             realm: basic
             clientId: client-secret
@@ -117,7 +118,11 @@ data:
           target: ../../examples/org.yaml
           rules:
             - allow: [User, Group]
-
+        
+        - type: url
+          target: https://github.com/backstage/software-templates/blob/main/scaffolder-templates/react-ssr-template/template.yaml
+          rules:
+            - allow: [Template]
         # example data
         - type: url
           target: https://github.com/backstage/backstage/blob/master/packages/catalog-model/examples/all.yaml
@@ -140,7 +145,7 @@ data:
               authProvider: serviceAccount
               # don't specify this attribute to force lookup in pod in cluster
               # serviceAccountToken: ''
-              dashboardUrl: https://console-openshift-console.apps.cluster-8plkk.8plkk.sandbox1485.opentlc.com ## path to update
+              dashboardUrl: https://console-openshift-console.apps.rosa-neve.kset.p1.openshiftapps.com ## path to update
               dashboardApp: openshift
               skipTLSVerify: false
               skipMetricsLookup: false

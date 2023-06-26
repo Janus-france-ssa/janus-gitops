@@ -17,7 +17,13 @@ Dans le fichier ```gitops/base/backstage/backstage-app-config.yaml``` remplace `
 
 Dans le fichier ```gitops/base/keycloack/keycloackclient.yaml``` remplace redirectUris par l'url correct.
 
+mettez a jour le repo
 
+```shell
+git add --all
+git commit -m "update path"
+git push
+```
 
 
 
@@ -45,6 +51,7 @@ psql
 ALTER USER feven WITH CREATEDB;
 ```
 
+Vous devrez aller setup un password a l'user feven dans keycloak
 
 ## Build your own backstage
 
