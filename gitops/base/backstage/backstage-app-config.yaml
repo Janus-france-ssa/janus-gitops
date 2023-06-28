@@ -7,7 +7,7 @@ data:
   app-config.yaml: |-
     app:
       title: RedHat Backstage App
-      baseUrl: http://localhost:3000
+      baseUrl: http://backstage-service.backstage.svc.cluster.local
 
     organization:
       name: My Company
@@ -19,7 +19,7 @@ data:
       # auth:
       #   keys:
       #     - secret: ${BACKEND_SECRET}
-      baseUrl: http://localhost:7007
+      baseUrl: http://backstage-service.backstage.svc.cluster.local
       listen:
         port: 7007
         # Uncomment the following host directive to bind to specific interfaces
@@ -29,7 +29,7 @@ data:
         # Content-Security-Policy directives follow the Helmet format: https://helmetjs.github.io/#reference
         # Default Helmet Content-Security-Policy values can be removed by setting the key to false
       cors:
-        origin: https://backstage-route-backstage.apps.cluster-8plkk.8plkk.sandbox1485.opentlc.com/
+        origin: http://backstage-service.backstage.svc.cluster.local
         methods: [GET, POST, PUT, DELETE]
         credentials: true
       # This is for local development only, it is not recommended to use this in production
@@ -79,59 +79,73 @@ data:
     auth:
       # see https://backstage.io/docs/auth/ to learn about auth providers
       providers: 
-        oauth2Proxy: {}
+        #oauth2Proxy: {}
 
     scaffolder:
       # see https://backstage.io/docs/features/software-templates/configuration for software template options
 
     catalog:
-      providers:
-        keycloakOrg:
-          default:
-            baseUrl: https://keycloak-sso.apps.rosa-neve.kset.p1.openshiftapps.com/auth
-            loginRealm: basic
-            realm: basic
-            clientId: client-secret
-            clientSecret: client-secret
-            schedule: # optional; same options as in TaskScheduleDefinition
-              frequency: { minutes: 1 }
-              timeout: { minutes: 1 }
-              initialDelay: { seconds: 15 }
-      import:
-        entityFilename: catalog-info.yaml
-        pullRequestBranchName: backstage-integration
+      #providers:
+      #  keycloakOrg:
+      #    default:
+      #      baseUrl: https://keycloak-sso.apps.rosa-neve.kset.p1.openshiftapps.com/auth
+      #      loginRealm: basic
+      #      realm: basic
+      #      clientId: client-secret
+      #      clientSecret: client-secret
+      #      schedule: # optional; same options as in TaskScheduleDefinition
+      #        frequency: { minutes: 1 }
+      #        timeout: { minutes: 1 }
+      #        initialDelay: { seconds: 15 }
+      #import:
+      #  entityFilename: catalog-info.yaml
+      #  pullRequestBranchName: backstage-integration
       rules:
-        - allow: [Component, System, API, Resource, Location]
+        - allow: [Component, System, API, Resource, Location, Template, User]
       locations:
         # Local example data, file locations are relative to the backend process, typically `packages/backend`
-        - type: file
-          target: ../../examples/entities.yaml
+        #- type: file
+        #  target: ../../examples/entities.yaml
 
         # Local example template
-        - type: file
-          target: ../../examples/template/template.yaml
-          rules:
-            - allow: [Template]
+        #- type: file
+        #  target: ../../examples/template/template.yaml
+        #  rules:
+        #    - allow: [Template]
 
         # Local example organizational data
-        - type: file
-          target: ../../examples/org.yaml
-          rules:
-            - allow: [User, Group]
-        
+        #- type: file
+        #  target: ../../examples/org.yaml
+        #  rules:
+        #    - allow: [User, Group]
         - type: url
-          target: https://github.com/backstage/software-templates/blob/main/scaffolder-templates/react-ssr-template/template.yaml
+          target: https://github.com/backstage/backstage/blob/master/packages/catalog-model/examples/all-components.yaml
+
+      # JanusIDP Quarkus Template
+        - type: url
+          target: https://github.com/janus-idp/software-templates/blob/main/scaffolder-templates/quarkus-web-template/template.yaml
           rules:
             - allow: [Template]
-        # example data
-        - type: url
-          target: https://github.com/backstage/backstage/blob/master/packages/catalog-model/examples/all.yaml
 
+
+
+
+
+
+              # - type: url
+              #target: https://github.com/backstage/software-templates/blob/main/scaffolder-templates/react-ssr-template/template.yaml
+              #rules:
+              #- allow: [Template]
+        # example data
+        #- type: url
+        #  target: https://github.com/backstage/backstage/blob/master/packages/catalog-model/examples/all.yaml
+        # rules:
+        #   - allow: [Template]
         # example org
-        - type: url
-          target: https://github.com/backstage/backstage/blob/master/packages/catalog-model/examples/acme-corp.yaml
-          rules:
-            - allow: [User, Group]
+        #- type: url
+        #  target: https://github.com/backstage/backstage/blob/master/packages/catalog-model/examples/acme-corp.yaml
+        #  rules:
+        #    - allow: [User, Group, Template]
 
     kubernetes:
       serviceLocatorMethod:
