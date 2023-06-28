@@ -9,9 +9,20 @@ import {
   EntityProvidedApisCard,
   EntityProvidingComponentsCard,
 } from '@backstage/plugin-api-docs';
+import { TektonPage } from '@janus-idp/backstage-plugin-tekton';
+import {
+  EntityArgoCDOverviewCard,
+  isArgocdAvailable
+} from '@roadiehq/backstage-plugin-argo-cd';
 import { 
   EntityKubernetesContent 
 } from '@backstage/plugin-kubernetes';
+import {
+  ClusterAvailableResourceCard,
+  ClusterContextProvider,
+  ClusterInfoCard,
+} from '@janus-idp/backstage-plugin-ocm';
+import { LatestPipelineRun, isTektonCIAvailable } from '@janus-idp/backstage-plugin-tekton';
 import {
   EntityAboutCard,
   EntityDependsOnComponentsCard,
@@ -47,6 +58,7 @@ import {
   EntityCatalogGraphCard,
 } from '@backstage/plugin-catalog-graph';
 import {
+  Entity,
   RELATION_API_CONSUMED_BY,
   RELATION_API_PROVIDED_BY,
   RELATION_CONSUMES_API,
@@ -74,6 +86,9 @@ const cicdContent = (
   <EntitySwitch>
     <EntitySwitch.Case if={isGithubActionsAvailable}>
       <EntityGithubActionsContent />
+    </EntitySwitch.Case>
+    <EntitySwitch.Case if={isTektonCIAvailable}>
+      <LatestPipelineRun linkTekton />
     </EntitySwitch.Case>
     
     <EntitySwitch.Case>
@@ -118,6 +133,13 @@ const entityWarningContent = (
 const overviewContent = (
   <Grid container spacing={3} alignItems="stretch">
     {entityWarningContent}
+      <EntitySwitch>
+        <EntitySwitch.Case if={e => Boolean(isArgocdAvailable(e))}>
+          <Grid item sm={4}>
+            <EntityArgoCDOverviewCard />
+          </Grid>
+        </EntitySwitch.Case>
+      </EntitySwitch>
     <Grid item md={6}>
       <EntityAboutCard variant="gridItem" />
     </Grid>
@@ -147,6 +169,9 @@ const serviceEntityPage = (
     </EntityLayout.Route>
     <EntityLayout.Route path="/topology" title="Topology">
       <TopologyPage />
+    </EntityLayout.Route>
+    <EntityLayout.Route path="/tekton" title="Tekton">
+      <TektonPage />
     </EntityLayout.Route>
     <EntityLayout.Route path="/api" title="API">
       <Grid container spacing={3} alignItems="stretch">
@@ -209,6 +234,7 @@ const websiteEntityPage = (
  * since this does not default. If no breakpoints are used, the items will equitably share the available space.
  * https://material-ui.com/components/grid/#basic-grid.
  */
+
 
 const defaultEntityPage = (
   <EntityLayout>
@@ -353,6 +379,36 @@ const systemPage = (
   </EntityLayout>
 );
 
+const isType = (types: string | string[]) => (entity: Entity) => {
+  if (!entity?.spec?.type) {
+    return false;
+  }
+  return typeof types === 'string'
+    ? entity?.spec?.type === types
+    : types.includes(entity.spec.type as string);
+};
+
+export const resourcePage = (
+  <EntityLayout>
+    <EntityLayout.Route path="/status" title="status">
+      <EntitySwitch>
+        <EntitySwitch.Case if={isType('kubernetes-cluster')}>
+          <ClusterContextProvider>
+            <Grid container direction="column" xs={6}>
+              <Grid item>
+                <ClusterInfoCard />
+              </Grid>
+              <Grid item>
+                <ClusterAvailableResourceCard />
+              </Grid>
+            </Grid>
+          </ClusterContextProvider>
+        </EntitySwitch.Case>
+      </EntitySwitch>
+    </EntityLayout.Route>
+  </EntityLayout>
+);
+
 const domainPage = (
   <EntityLayout>
     <EntityLayout.Route path="/" title="Overview">
@@ -380,7 +436,7 @@ export const entityPage = (
     <EntitySwitch.Case if={isKind('user')} children={userPage} />
     <EntitySwitch.Case if={isKind('system')} children={systemPage} />
     <EntitySwitch.Case if={isKind('domain')} children={domainPage} />
-
+    <EntitySwitch.Case if={isKind('resource')} children={resourcePage} />
     <EntitySwitch.Case>{defaultEntityPage}</EntitySwitch.Case>
   </EntitySwitch>
 );

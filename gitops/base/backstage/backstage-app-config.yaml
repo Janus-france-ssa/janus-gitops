@@ -59,6 +59,14 @@ data:
         #   token: ${GHE_TOKEN}
 
     proxy:
+      #'/argocd/api':
+      #  target: https://openshift-gitops-server.openshift-gitops.svc.cluster.local/api/v1/
+      #  changeOrigin: true
+      #  # only if your argocd api has self-signed cert
+      #  secure: false
+      #  headers:
+      #    Cookie:
+      #      $env: ARGOCD_AUTH_TOKEN    
       ### Example for how to add a proxy endpoint for the frontend.
       ### A typical reason to do this is to handle HTTPS and CORS for internal services.
       # '/test':
@@ -81,10 +89,28 @@ data:
       providers: 
         #oauth2Proxy: {}
 
+    argocd:
+      username: cluster-admin
+      password: bwrvx-a6xKU-rw2ih-GrncY
+      appLocatorMethods:
+        - type: 'config'
+          instances:
+            - name: argoInstance1
+              url: https://openshift-gitops-server.openshift-gitops.svc.cluster.local
+
+
     scaffolder:
       # see https://backstage.io/docs/features/software-templates/configuration for software template options
 
     catalog:
+      providers:
+        ocm:
+          hub:
+            name: local-rosa
+            kubernetesPluginRef: local
+            schedule: # optional; same options as in TaskScheduleDefinition
+              frequency: { minutes: 1 }
+              timeout: { minutes: 1 }
       #providers:
       #  keycloakOrg:
       #    default:
@@ -103,21 +129,6 @@ data:
       rules:
         - allow: [Component, System, API, Resource, Location, Template, User]
       locations:
-        # Local example data, file locations are relative to the backend process, typically `packages/backend`
-        #- type: file
-        #  target: ../../examples/entities.yaml
-
-        # Local example template
-        #- type: file
-        #  target: ../../examples/template/template.yaml
-        #  rules:
-        #    - allow: [Template]
-
-        # Local example organizational data
-        #- type: file
-        #  target: ../../examples/org.yaml
-        #  rules:
-        #    - allow: [User, Group]
         - type: url
           target: https://github.com/backstage/backstage/blob/master/packages/catalog-model/examples/all-components.yaml
 
@@ -126,27 +137,6 @@ data:
           target: https://github.com/janus-idp/software-templates/blob/main/scaffolder-templates/quarkus-web-template/template.yaml
           rules:
             - allow: [Template]
-
-
-
-
-
-
-              # - type: url
-              #target: https://github.com/backstage/software-templates/blob/main/scaffolder-templates/react-ssr-template/template.yaml
-              #rules:
-              #- allow: [Template]
-        # example data
-        #- type: url
-        #  target: https://github.com/backstage/backstage/blob/master/packages/catalog-model/examples/all.yaml
-        # rules:
-        #   - allow: [Template]
-        # example org
-        #- type: url
-        #  target: https://github.com/backstage/backstage/blob/master/packages/catalog-model/examples/acme-corp.yaml
-        #  rules:
-        #    - allow: [User, Group, Template]
-
     kubernetes:
       serviceLocatorMethod:
         type: multiTenant
@@ -167,4 +157,10 @@ data:
         - group: 'route.openshift.io'
           apiVersion: 'v1'
           plural: 'routes'
+        - group: 'tekton.dev'
+          apiVersion: 'v1beta1'
+          plural: 'pipelineruns'
+        - group: 'tekton.dev'
+          apiVersion: 'v1beta1'
+          plural: 'taskruns'
 

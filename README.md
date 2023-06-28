@@ -148,7 +148,7 @@ CMD ["node", "packages/backend", "--config", "app-config.yaml"]
 Build and push your image
 
 ```shell
-sudo podman  image build -t backstage .
+sudo podman  image build -t quay.io/feven/backstage .
 sudo podman push quay.io/feven/backstage:latest
 ```
 

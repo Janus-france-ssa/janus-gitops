@@ -18,4 +18,102 @@ supplementalGroups:
   type: RunAsAny
 users:
   - system:serviceaccount:backstage:backstage-sa
-
+---
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: backstage-read-only
+  annotations:
+    "helm.sh/hook-weight": "-2"
+rules:
+  - apiGroups:
+      - '*'
+    resources:
+      - pods
+      - configmaps
+      - services
+      - deployments
+      - routes
+      - replicasets
+      - horizontalpodautoscalers
+      - ingresses
+      - statefulsets
+      - limitranges
+      - daemonsets
+    verbs:
+      - get
+      - list
+      - watch
+  - apiGroups:
+      - batch
+    resources:
+      - jobs
+      - cronjobs
+    verbs:
+      - get
+      - list
+      - watch
+  - apiGroups:
+      - metrics.k8s.io
+    resources:
+      - pods
+    verbs:
+      - get
+      - list
+  - apiGroups:
+      - tekton.dev
+    resources:
+      - pipelineruns
+      - taskruns
+    verbs:
+      - get
+      - list
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: backstage-kubernetes-plugin
+roleRef:
+  #apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: backstage-read-only
+subjects:
+- kind: ServiceAccount
+  name: backstage-sa
+  namespace: backstage
+---
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: backstage-ocm-plugin
+rules:
+  - apiGroups:
+      - cluster.open-cluster-management.io
+    resources:
+      - managedclusters
+    verbs:
+      - get
+      - watch
+      - list
+  - apiGroups:
+      - internal.open-cluster-management.io
+    resources:
+      - managedclusterinfos
+    verbs:
+      - get
+      - watch
+      - list
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: backstage-ocm-binding
+roleRef:
+  #apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: backstage-ocm-plugin
+subjects:
+- kind: ServiceAccount
+  name: backstage-sa
+  namespace: backstage
