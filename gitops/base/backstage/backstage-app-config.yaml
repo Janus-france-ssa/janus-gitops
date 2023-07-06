@@ -31,7 +31,7 @@ data:
         connection:
           host: postgres-service.backstage.svc.cluster.local
           port: 5432
-          user: feven
+          user: pg
           password: redhat
     catalog:
       locations:
