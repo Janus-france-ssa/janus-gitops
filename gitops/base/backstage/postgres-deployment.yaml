@@ -24,7 +24,7 @@ spec:
         - containerPort: 5432
         env:
         - name: POSTGRESQL_USER
-          value: "feven"
+          value: "pg"
         - name: POSTGRESQL_PASSWORD
           value: "redhat"
         - name: POSTGRESQL_DATABASE
