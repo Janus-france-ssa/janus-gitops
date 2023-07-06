@@ -52,7 +52,7 @@ psql
 ALTER USER feven WITH CREATEDB;
 ```
 
-Vous devrez aller setup un password a l'user feven dans keycloak
+oc patch argocd openshift-gitops -n openshift-gitops --type merge --patch '{"spec":{"extraConfig":{"accounts.admin": "apiKey"}}}'
 
 ## Build your own backstage
 
