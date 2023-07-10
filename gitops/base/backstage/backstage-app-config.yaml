@@ -11,7 +11,7 @@ data:
       appLocatorMethods:
       - instances:
         - name: main
-          token: "${ARGO_API_TOKEN}"
+          token: ${ARGO_API_TOKEN}
           url: https://openshift-gitops-server-openshift-gitops.apps.cluster-xj8z5.xj8z5.sandbox636.opentlc.com #<ingress to update>
         type: config
       waitCycles: 25
@@ -20,8 +20,8 @@ data:
       providers:
         github:
           development:
-            clientId: "${GH_CLIENT_ID}"
-            clientSecret: "${GH_CLIENT_SECRET}"
+            clientId: ${GH_CLIENT_ID}
+            clientSecret: ${GH_CLIENT_SECRET}
     backend:
       baseUrl: https://red-hat-developer-hub-backstage.apps.cluster-xj8z5.xj8z5.sandbox636.opentlc.com #<ingress to update>
       cors:
@@ -127,7 +127,7 @@ data:
     integrations:
       github:
       - host: github.com
-        token: "${GH_TOKEN}"
+        token: ${GH_TOKEN}
     kubernetes:
       clusterLocatorMethods:
       - clusters:
