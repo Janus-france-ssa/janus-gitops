@@ -23,29 +23,6 @@ spec:
   name: quay-operator
   source: redhat-operators
   sourceNamespace: openshift-marketplace
----
-## RH SSO
-apiVersion: operators.coreos.com/v1
-kind: OperatorGroup
-metadata:
-  annotations:
-  name: sso
-  namespace: sso
-spec:
-  targetNamespaces:
-    - sso
----
-apiVersion: operators.coreos.com/v1alpha1
-kind: Subscription
-metadata:
-  name: rhsso-operator
-  namespace: sso
-spec:
-  channel: stable
-  installPlanApproval: Automatic
-  name: rhsso-operator
-  source: redhat-operators
-  sourceNamespace: openshift-marketplace
 #pipeline
 ---
 apiVersion: operators.coreos.com/v1alpha1

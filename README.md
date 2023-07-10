@@ -33,18 +33,6 @@ Create the argoCD Application
 oc apply -f gitops/argocd/application.yaml
 ```
 
-After the creation you need to update the psql database using the following command
-
-```shell
-oc rsh postgres-78b8db49c9-k9trn
-
-psql
-
-ALTER USER feven WITH CREATEDB;
-```
-
-
-
 ## Configure integration with argocd
 
 ```shell
@@ -64,3 +52,21 @@ Finally go in ```https://github.com/settings/tokens``` and Generate a New Token.
 ```
 oc create secret generic backstage-secret -n backstage --from-literal=GH_TOKEN=<GH_TOKEN> --from-literal=GH_CLIENT_ID=<GH_CLIENT_ID> --from-literal=GH_CLIENT_SECRET=<GH_CLIENT_SECRET> --from-literal=ARGO_API_TOKEN=<ARGO_API_TOKEN>
 ```
+
+
+
+After the creation you need to update the psql database using the following command
+
+```shell
+oc project backstage
+
+oc rsh postgres-78b8db49c9-k9trn #pod to update
+
+psql
+
+ALTER USER pg WITH CREATEDB;
+```
+
+
+
+
