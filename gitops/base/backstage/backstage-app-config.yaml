@@ -6,13 +6,13 @@ metadata:
 data:
   app-config.yaml: |-
     app:
-      baseUrl: https://red-hat-developer-hub-backstage.apps.cluster-zgvld.zgvld.sandbox1409.opentlc.com #<ingress to update>
+      baseUrl: https://red-hat-developer-hub-backstage.apps.cluster-xj8z5.xj8z5.sandbox636.opentlc.com #<ingress to update>
     argocd:
       appLocatorMethods:
       - instances:
         - name: main
           token: "{ARGO_API_TOKEN}"
-          url: https://openshift-gitops-server-openshift-gitops.apps.cluster-zgvld.zgvld.sandbox1409.opentlc.com #<ingress to update>
+          url: https://openshift-gitops-server-openshift-gitops.apps.cluster-xj8z5.xj8z5.sandbox636.opentlc.com #<ingress to update>
         type: config
       waitCycles: 25
     auth:
@@ -23,9 +23,9 @@ data:
             clientId: "{GH_CLIENT_ID}"
             clientSecret: "{GH_CLIENT_SECRET}"
     backend:
-      baseUrl: https://red-hat-developer-hub-backstage.apps.cluster-zgvld.zgvld.sandbox1409.opentlc.com #<ingress to update>
+      baseUrl: https://red-hat-developer-hub-backstage.apps.cluster-xj8z5.xj8z5.sandbox636.opentlc.com #<ingress to update>
       cors:
-        origin: https://redhat-developer-hub-backstage.apps.cluster-zgvld.zgvld.sandbox1409.opentlc.com #<ingress to update>
+        origin: https://redhat-developer-hub-backstage.apps.cluster-xj8z5.xj8z5.sandbox636.opentlc.com #<ingress to update>
       database:
         client: pg
         connection:
