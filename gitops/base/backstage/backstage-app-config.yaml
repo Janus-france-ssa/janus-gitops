@@ -103,7 +103,7 @@ data:
       - rules:
         - allow:
           - Template
-        target: https://github.com/feven-redhat/software-template-feven/blob/main/scaffolder-templates/quarkus-web-template/template.yaml
+        target: https://github.com/feven-redhat/software-templates/blob/main/scaffolder-templates/quarkus-web-template/template.yaml
         type: url
       providers:
         ocm:

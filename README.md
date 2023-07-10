@@ -39,7 +39,7 @@ oc apply -f gitops/argocd/application.yaml
 oc patch argocd openshift-gitops -n openshift-gitops --type merge --patch '{"spec":{"extraConfig":{"accounts.admin": "apiKey"}}}'
 ```
 
-Then go in your argocd application login and go in Settings>Account>admin and click on Generate New. Keep the generated token, he will be create in the secret on next step
+Then go in your argocd application, login using admin as user and take the password in the openshift-gitops-cluster secret. Then go in Settings>Account>admin and click on Generate New. Keep the generated token, he will be create in the secret on next step
 
 ## Configure integration with github
 
