@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: backstage 
+  name: rhdh
   annotations:
     openshift.io/node-selector: ""
   labels:

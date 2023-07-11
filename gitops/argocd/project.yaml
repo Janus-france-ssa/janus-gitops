@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: AppProject
 metadata:
-  name: backstage 
+  name: rhdh
   namespace: openshift-gitops
 spec:
   clusterResourceWhitelist:
@@ -16,4 +16,5 @@ spec:
     kind: '*'
   sourceRepos:
   - https://github.com/Janus-france-ssa/janus-gitops.git 
+  - https://charts.openshift.io
 status: {}

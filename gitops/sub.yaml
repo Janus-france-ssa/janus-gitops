@@ -59,6 +59,20 @@ spec:
   source: redhat-operators
   sourceNamespace: openshift-marketplace
 ---
+apiVersion: operators.coreos.com/v1alpha1
+kind: Subscription
+metadata:
+  labels:
+    operators.coreos.com/rhsso-operator.rhdp: ""
+  name: rhsso-operator
+  namespace: rhdp-test
+spec:
+  channel: stable
+  installPlanApproval: Automatic
+  name: rhsso-operator
+  source: redhat-operators
+  sourceNamespace: openshift-marketplace
+  startingCSV: rhsso-operator.7.6.4-opr-002
 ---
 apiVersion: operator.open-cluster-management.io/v1
 kind: MultiClusterHub
@@ -83,4 +97,4 @@ subjects:
   - apiGroup: rbac.authorization.k8s.io
     kind: User
     name: system:admin
-
+---

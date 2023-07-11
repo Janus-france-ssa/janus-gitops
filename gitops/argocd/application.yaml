@@ -1,20 +1,24 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: backstage
+  name: rhdh
   namespace: openshift-gitops
 spec:
-  project: backstage
-  source:
-    repoURL: https://github.com/Janus-france-ssa/janus-gitops.git
-    targetRevision: master
-    path: gitops/base
   destination:
-    server: https://kubernetes.default.svc
-    namespace: backstage
+    name: ''
+    namespace: rhdh
+    server: 'https://kubernetes.default.svc'
+
+  source:
+    chart: redhat-developer-hub
+    repoURL: 'https://charts.openshift.io'
+    targetRevision: 0.1.0
+    helm:
+      releaseName: rhdh
+  project: rhdh
   syncPolicy:
     syncOptions:
-    - CreateNamespace=false
+    - CreateNamespace=true
     automated:
       selfHeal: true
       prune: true
