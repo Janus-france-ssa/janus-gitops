@@ -27,6 +27,19 @@ Create the argoCD chain project
 oc apply -f gitops/argocd/project.yaml
 ```
 
+Download a Quay.io pullSecret associated with your Red Hat Developer Hub subscription. The pull secret grants you access to the developer preview version of the Red Hat Developer Hub.
+```
+cat <<EOF | oc create -f - -n backstage
+apiVersion: v1
+kind: Secret
+metadata:
+  name: rhdh-pull-secret
+data:
+  .dockerconfigjson: YOUR_QUAY_IO_TOKEN
+type: kubernetes.io/dockerconfigjson
+EOF
+```
+
 Create the argoCD Application
 
 ```shell
