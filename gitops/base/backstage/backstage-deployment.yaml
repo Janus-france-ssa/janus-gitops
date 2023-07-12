@@ -23,8 +23,7 @@ spec:
         runAsUser: 1000
       containers:
         - name: backstage
-          #image: quay.io/feven/backstage:latest
-          image: quay.io/feven/pogacar:latest
+          image: quay.io/rhdh/developer-hub-rhel9:1.0-8
           env:
             - name: GH_TOKEN
               valueFrom:
@@ -68,6 +67,8 @@ spec:
           args:
             - '--config'
             - /app/app-config-from-configmap.yaml
+      imagePullSecrets:
+      - name: rhdh-pull-secret
       volumes:
       - name: app-config
         configMap:
