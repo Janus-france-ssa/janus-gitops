@@ -36,6 +36,7 @@ oc apply -f gitops/argocd/application.yaml
 ## Configure integration with argocd
 
 ```shell
+oc -n openshift-gitops patch argocd/openshift-gitops --type=merge -p='{"spec":{"server":{"insecure":true,"route":{"enabled":true,"tls":{"insecureEdgeTerminationPolicy":"Redirect","termination":"edge"}}}}}'
 oc patch argocd openshift-gitops -n openshift-gitops --type merge --patch '{"spec":{"extraConfig":{"accounts.admin": "apiKey"}}}'
 ```
 
@@ -49,8 +50,14 @@ Finally go in ```https://github.com/settings/tokens``` and Generate a New Token.
 
 ## Generate backstage secret 
 
+Finally get the admin password secret and create the backstage-secret
+```shell
+oc extract secret/openshift-gitops-cluster -n openshift-gitops --to=-
 ```
-oc create secret generic backstage-secret -n backstage --from-literal=GH_TOKEN=<GH_TOKEN> --from-literal=GH_CLIENT_ID=<GH_CLIENT_ID> --from-literal=GH_CLIENT_SECRET=<GH_CLIENT_SECRET> --from-literal=ARGO_API_TOKEN=<ARGO_API_TOKEN>
+
+
+```
+oc create secret generic backstage-secret -n backstage --from-literal=GH_TOKEN=<GH_TOKEN> --from-literal=GH_CLIENT_ID=<GH_CLIENT_ID> --from-literal=GH_CLIENT_SECRET=<GH_CLIENT_SECRET> --from-literal=ARGO_API_TOKEN=<ARGO_API_TOKEN> --from-literal=ARGOCD_USERNAME=admin --from-literal=ARGOCD_PASSWORD=<ARGOCD_PASSWORD>
 ```
 
 

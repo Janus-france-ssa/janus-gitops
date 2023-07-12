@@ -41,6 +41,16 @@ spec:
                 secretKeyRef:
                   name: backstage-secret
                   key: GH_CLIENT_SECRET
+            - name: ARGOCD_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: backstage-secret
+                  key: ARGOCD_USERNAME
+            - name: ARGOCD_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: backstage-secret
+                  key: ARGOCD_PASSWORD
           securityContext:
             allowPrivilegeEscalation: true
           ports:
