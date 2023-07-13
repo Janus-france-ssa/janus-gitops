@@ -10,6 +10,15 @@ metadata:
 apiVersion: v1
 kind: Namespace
 metadata:
+  name: janus-argocd
+  annotations:
+    openshift.io/node-selector: ""
+  labels:
+    argocd.argoproj.io/managed-by: openshift-gitops
+---
+apiVersion: v1
+kind: Namespace
+metadata:
   annotations:
     openshift.io/display-name: "Advanced Cluster Management for Kubernetes"
   labels:

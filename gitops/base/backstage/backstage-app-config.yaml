@@ -40,11 +40,6 @@ data:
       - rules:
         - allow:
           - Template
-        target: https://github.com/janus-idp/software-templates/blob/main/scaffolder-templates/quarkus-web-template/template.yaml
-        type: url
-      - rules:
-        - allow:
-          - Template
         target: https://github.com/janus-idp/software-templates/blob/main/scaffolder-templates/ansible-job/template.yaml
         type: url
       - rules:
