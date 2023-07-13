@@ -6,7 +6,7 @@ metadata:
 data:
   app-config.yaml: |-
     app:
-      baseUrl: https://red-hat-developer-hub-backstage.apps.cluster-bbcq4.bbcq4.sandbox419.opentlc.com #<ingress to update>
+      baseUrl: https://backstage-route-backstage.apps.cluster-bbcq4.bbcq4.sandbox419.opentlc.com #<ingress to update>
     argocd:
       #username: ${ARGOCD_USERNAME}
       #password: ${ARGOCD_PASSWORD}
@@ -25,9 +25,9 @@ data:
             clientId: ${GH_CLIENT_ID}
             clientSecret: ${GH_CLIENT_SECRET}
     backend:
-      baseUrl: https://red-hat-developer-hub-backstage.apps.cluster-bbcq4.bbcq4.sandbox419.opentlc.com #<ingress to update>
+      baseUrl: https://backstage-route-backstage.apps.cluster-bbcq4.bbcq4.sandbox419.opentlc.com #<ingress to update>
       cors:
-        origin: https://redhat-developer-hub-backstage.apps.cluster-bbcq4.bbcq4.sandbox419.opentlc.com #<ingress to update>
+        origin: https://backstage-route-backstage.apps.cluster-bbcq4.bbcq4.sandbox419.opentlc.com #<ingress to update>
       database:
         client: pg
         connection:
