@@ -102,6 +102,11 @@ data:
           - Template
         target: https://github.com/feven-redhat/software-templates/blob/main/scaffolder-templates/quarkus-web-template/template.yaml
         type: url
+      - rules:
+        - allow:
+          - Template
+        target: https://github.com/feven-redhat/ordermanagement-template/blob/main/template.yaml
+        type: url
       providers:
         ocm:
           operate-first:

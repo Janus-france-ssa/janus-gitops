@@ -5,15 +5,18 @@ metadata:
   namespace: openshift-gitops
 spec:
   clusterResourceWhitelist:
-  - group: '*'
-    kind: '*'
+    - group: '*'
+      kind: '*'
   destinations:
-  - name: '*'
-    namespace: '*'
-    server: '*'
-  namespaceResourceWhitelist:
-  - group: '*'
-    kind: '*'
+    - namespace: '*'
+      server: '*'
+  roles:
+    - name: automation
+      policies:
+        - 'p, proj:janus:automation, applications, get, janus/*, allow'
+        - 'p, proj:janus:automation, applications, create, janus/*, allow'
+        - 'p, proj:janus:automation, applications, update, janus/*, allow'
+        - 'p, proj:janus:automation, applications, delete, janus/*, allow'
   sourceRepos:
-  - https://github.com/Janus-france-ssa/janus-gitops.git 
+    - '*'
 status: {}
