@@ -2,7 +2,7 @@
 
 ## Install backstage
 
-This repo contains the material to deploy a janus on openshift.
+This repo contains the material to deploy a Janus on OpenShift.
 
 ```shell
 oc apply -f gitops/ns.yaml
@@ -10,10 +10,9 @@ oc apply -f gitops/sub.yaml
 oc apply -f gitops/ClusterRoleBinding.yaml 
 ```
 
+In the file ```gitops/base/backstage/backstage-app-config.yaml``` replace ```dashboardUrl``` and ``baseUrl``` with the correct ingres for your domain
 
-Dans le fichier ```gitops/base/backstage/backstage-app-config.yaml``` remplace ```dashboardUrl``` et ```baseUrl``` avec l'ingres correct pour votre domaine
-
-mettez a jour le repo
+update the repo
 
 ```shell
 git add --all
@@ -61,11 +60,11 @@ oc extract secret/openshift-gitops-cluster -n openshift-gitops --to=-
 Then go in Settings>Account>admin and click on Generate New. Keep the generated token, he will be create in the secret on next step.
 
 
-## Configure integration with github
+## Configure integration with GitHub
 
-Go in ```https://github.com/settings/developers``` click in ```New Oauth App``` and complete the form. In Homepage URL put the URL of the backstage route (ex: https://red-hat-developer-hub-backstage.apps.rosa-neve.kset.p1.openshiftapps) and for Authorization callback URL put the backstage route and add /api/auth/github/handler/frame (ex https://backstage-developer-hub-backstage-developer-hub.apps.rosa-neve.kset.p1.openshiftapps.com//api/auth/github/handler/frame). Then create your Oauth app and click on ```Generate a new client secret```. Keep the clien ID and the Client Secret.   
+Go in ```https://github.com/settings/developers``` click in ```New Oauth App``` and complete the form. In Homepage URL put the URL of the backstage route (ex: https://red-hat-developer-hub-backstage.apps.rosa-neve.kset.p1.openshiftapps) and for Authorization callback URL put the backstage route and add /api/auth/github/handler/frame (ex https://backstage-developer-hub-backstage-developer-hub.apps.rosa-neve.kset.p1.openshiftapps.com//api/auth/github/handler/frame). Then create your Oauth app and click on ```Generate a new client secret```. Keep the client ID and the Client Secret.   
 
-Finally go in ```https://github.com/settings/tokens``` and Generate a New Token. Give access to repo and workflow and click on Generate token. Keep the value as GH_TOKEN.
+Finally, go in ```https://github.com/settings/tokens``` and Generate a New Token. Give access to repo and workflow and click on Generate token. Keep the value as GH_TOKEN.
 
 ## Generate backstage secret 
 
@@ -76,7 +75,7 @@ oc create secret generic backstage-secret -n backstage --from-literal=GH_TOKEN=<
 
 
 
-After the creation you need to update the psql database using the following command
+After the creation, you need to update the psql database using the following command
 
 ```shell
 oc project backstage
@@ -87,7 +86,3 @@ psql
 
 ALTER USER pg WITH CREATEDB;
 ```
-
-
-
-
