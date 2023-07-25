@@ -49,6 +49,7 @@ oc apply -f gitops/argocd/application.yaml
 ## Configure integration with argocd
 
 ```shell
+oc -n openshift-gitops patch argocd/openshift-gitops --type=merge -p='{"spec":{"server":{"insecure":true,"route":{"enabled":true,"tls":{"insecureEdgeTerminationPolicy":"Redirect","termination":"edge"}}}}}'
 oc patch argocd openshift-gitops -n openshift-gitops --type merge --patch '{"spec":{"extraConfig":{"accounts.admin": "apiKey"}}}'
 ```
 
@@ -74,7 +75,7 @@ Finally go in ```https://github.com/settings/tokens``` and Generate a New Token.
 oc create secret generic backstage-secret -n backstage --from-literal=GH_TOKEN=<GH_TOKEN> --from-literal=GH_CLIENT_ID=<GH_CLIENT_ID> --from-literal=GH_CLIENT_SECRET=<GH_CLIENT_SECRET> --from-literal=ARGO_API_TOKEN=<ARGO_API_TOKEN> 
 ```
 
-
+NOTE: TODO faire ca dans la partie deployment
 
 After the creation you need to update the psql database using the following command
 
