@@ -6,7 +6,7 @@ metadata:
 data:
   app-config.yaml: |-
     app:
-      baseUrl: https://backstage-route-backstage.apps.cluster-vh7ck.vh7ck.sandbox370.opentlc.com #<ingress to update>
+      baseUrl: https://backstage-route-backstage.apps.cluster-476bt.476bt.sandbox2534.opentlc.com #<ingress to update>
     argocd:
       #username: ${ARGOCD_USERNAME}
       #password: ${ARGOCD_PASSWORD}
@@ -14,7 +14,7 @@ data:
       - instances:
         - name: main
           token: ${ARGO_API_TOKEN}
-          url: https://openshift-gitops-server-openshift-gitops.apps.cluster-vh7ck.vh7ck.sandbox370.opentlc.com #<ingress to update>
+          url: https://openshift-gitops-server-openshift-gitops.apps.cluster-476bt.476bt.sandbox2534.opentlc.com #<ingress to update>
         type: config
       waitCycles: 25
     auth:
@@ -25,9 +25,9 @@ data:
             clientId: ${GH_CLIENT_ID}
             clientSecret: ${GH_CLIENT_SECRET}
     backend:
-      baseUrl: https://backstage-route-backstage.apps.cluster-vh7ck.vh7ck.sandbox370.opentlc.com #<ingress to update>
+      baseUrl: https://backstage-route-backstage.apps.cluster-476bt.476bt.sandbox2534.opentlc.com #<ingress to update>
       cors:
-        origin: https://backstage-route-backstage.apps.cluster-vh7ck.vh7ck.sandbox370.opentlc.com #<ingress to update>
+        origin: https://backstage-route-backstage.apps.cluster-476bt.476bt.sandbox2534.opentlc.com #<ingress to update>
       database:
         client: pg
         connection:
