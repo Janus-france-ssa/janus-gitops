@@ -24,3 +24,12 @@ metadata:
   labels:
     openshift.io/cluster-monitoring: 'true'
   name: open-cluster-management
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: kepler
+  annotations:
+    openshift.io/node-selector: ""
+  labels:
+    argocd.argoproj.io/managed-by: openshift-gitops

@@ -8,3 +8,7 @@ resources:
   - ./backstage/backstage-sa.yaml  
   - ./backstage/postgres-deployment.yaml
   - ./backstage/backstage-app-config.yaml
+#kepler
+  - ./kepler/kepler-config.yaml
+  - ./kepler/kepler-deployment.yaml  
+  - ./kepler/kepler-sa.yaml

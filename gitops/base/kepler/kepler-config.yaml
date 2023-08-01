@@ -1,0 +1,24 @@
+---
+apiVersion: v1
+data:
+  BIND_ADDRESS: 0.0.0.0:9109
+  CGROUP_METRICS: '*'
+  CPU_ARCH_OVERRIDE: ""
+  ENABLE_EBPF_CGROUPID: "true"
+  ENABLE_GPU: "true"
+  ENABLE_PROCESS_METRICS: "false"
+  EXPOSE_IRQ_COUNTER_METRICS: "true"
+  EXPOSE_KUBELET_METRICS: "true"
+  KEPLER_LOG_LEVEL: "1"
+  KEPLER_NAMESPACE: kepler
+  METRIC_PATH: /metrics
+  MODEL_CONFIG: |
+    CONTAINER_COMPONENTS_ESTIMATOR=false
+    CONTAINER_COMPONENTS_INIT_URL=https://raw.githubusercontent.com/sustainable-computing-io/kepler-model-server/main/tests/test_models/DynComponentModelWeight/CgroupOnly/ScikitMixed/ScikitMixed.json
+kind: ConfigMap
+metadata:
+  labels:
+    sustainable-computing.io/app: kepler
+  name: kepler-cfm
+  namespace: kepler
+
