@@ -130,6 +130,18 @@ data:
       github:
       - host: github.com
         token: ${GH_TOKEN}
+    techdocs:
+      publisher:
+        type: 'awsS3'
+        awsS3:
+          bucketName: 'rhdh-neve'
+          accountId: ${AWS_ID}
+          region: ${AWS_REGION}
+    aws:
+      accounts:
+        - accountId: ${AWS_ID}
+          accessKeyId: ${AWS_ACCESS_KEY_ID}
+          secretAccessKey: ${AWS_SECRET_ACCESS_KEY}
     kubernetes:
       clusterLocatorMethods:
       - clusters:
