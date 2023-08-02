@@ -50,11 +50,11 @@ spec:
                 secretKeyRef:
                   name: backstage-secret
                   key: AWS_ID
-            - name: TECHDOCS_S3_BUCKET_NAME
+            - name: BUCKET_NAME
               valueFrom:
                 secretKeyRef:
                   name: backstage-secret
-                  key: TECHDOCS_S3_BUCKET_NAME
+                  key: BUCKET_NAME
             - name: AWS_SECRET_ACCESS_KEY
               valueFrom:
                 secretKeyRef:
@@ -65,6 +65,11 @@ spec:
                 secretKeyRef:
                   name: backstage-secret
                   key: AWS_REGION
+            - name: AWS_ENDPOINT
+              valueFrom:
+                secretKeyRef:
+                  name: backstage-secret
+                  key: AWS_ENDPOINT
             - name: ARGO_API_TOKEN
               valueFrom:
                 secretKeyRef:
