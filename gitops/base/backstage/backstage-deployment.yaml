@@ -55,6 +55,11 @@ spec:
                 secretKeyRef:
                   name: backstage-secret
                   key: AWS_SECRET_ACCESS_KEY
+            - name: AWS_REGION
+              valueFrom:
+                secretKeyRef:
+                  name: backstage-secret
+                  key: AWS_REGION
             - name: ARGO_API_TOKEN
               valueFrom:
                 secretKeyRef:
