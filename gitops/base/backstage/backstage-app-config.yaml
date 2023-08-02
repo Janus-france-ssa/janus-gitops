@@ -55,7 +55,7 @@ data:
       - rules:
         - allow:
           - Template
-        target: https://github.com/janus-idp/software-templates/blob/main/scaffolder-templates/documentation-template/template.yaml
+        target: https://github.com/feven-redhat/software-templates/blob/main/scaffolder-templates/documentation-template/template.yaml
         type: url
       - rules:
         - allow:
