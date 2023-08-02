@@ -68,11 +68,14 @@ Go in ```https://github.com/settings/developers``` click in ```New Oauth App``` 
 
 Finally go in ```https://github.com/settings/tokens``` and Generate a New Token. Give access to repo and workflow and click on Generate token. Keep the value as GH_TOKEN.
 
+##techdocs
+To use techdocs you need access to s3 storage. Create a s3 bucket in AWS and then get the a
+
 ## Generate backstage secret 
 
 
 ```
-oc create secret generic backstage-secret -n backstage --from-literal=GH_TOKEN=<GH_TOKEN> --from-literal=GH_CLIENT_ID=<GH_CLIENT_ID> --from-literal=GH_CLIENT_SECRET=<GH_CLIENT_SECRET> --from-literal=ARGO_API_TOKEN=<ARGO_API_TOKEN> 
+oc create secret generic backstage-secret -n backstage --from-literal=GH_TOKEN=<GH_TOKEN> --from-literal=GH_CLIENT_ID=<GH_CLIENT_ID> --from-literal=GH_CLIENT_SECRET=<GH_CLIENT_SECRET> --from-literal=ARGO_API_TOKEN=<ARGO_API_TOKEN> --from-literal=AWS_ID=<AWS_ID> --from-literal=AWS_ACCESS_KEY_ID=<AWS_ACCESS_KEY_ID> --from-literal=AWS_SECRET_ACCESS_KEY=<AWS_SECRET_ACCESS_KEY> --from-literal=AWS_REGION=<AWS_REGION>
 ```
 
 NOTE: TODO faire ca dans la partie deployment
