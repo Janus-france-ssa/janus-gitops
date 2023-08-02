@@ -132,7 +132,6 @@ data:
       - host: github.com
         token: ${GH_TOKEN}
     techdocs:
-      builder: 'local'
       publisher:
         type: 'awsS3'
         awsS3:
