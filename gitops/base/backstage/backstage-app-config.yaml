@@ -126,6 +126,7 @@ data:
       github: true
       kubernetes: true
       ocm: true
+      techdocs: true
     integrations:
       github:
       - host: github.com
