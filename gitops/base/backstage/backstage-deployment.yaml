@@ -40,6 +40,26 @@ spec:
                 secretKeyRef:
                   name: backstage-secret
                   key: GH_CLIENT_SECRET
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: backstage-secret
+                  key: AWS_ACCESS_KEY_ID
+            - name: AWS_ID
+              valueFrom:
+                secretKeyRef:
+                  name: backstage-secret
+                  key: AWS_ID
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: backstage-secret
+                  key: AWS_SECRET_ACCESS_KEY
+            - name: AWS_REGION
+              valueFrom:
+                secretKeyRef:
+                  name: backstage-secret
+                  key: AWS_REGION
             - name: ARGO_API_TOKEN
               valueFrom:
                 secretKeyRef:
