@@ -20,7 +20,7 @@ patches:
   patch: |-
     - op: replace
       path: /metadata/annotations/serviceaccounts.openshift.io~1oauth-redirecturi.backstage
-      value: https://backstage-route-backstage.apps.rosa-paris-00.bufj.p1.openshiftapps.com/oauth/callback
+      value: https://backstage-route-backstage-slallemand.apps.rosa-paris-00.bufj.p1.openshiftapps.com/oauth/callback
 - target:
     kind: SecurityContextConstraints
     name: backstage-scc
