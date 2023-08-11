@@ -7,17 +7,17 @@ spec:
   project: backstage
   source:
     repoURL: https://github.com/Janus-france-ssa/janus-gitops.git
-    targetRevision: master
+    targetRevision: slallemand/openshift-authent
     path: gitops/base
   destination:
     server: https://kubernetes.default.svc
-    namespace: backstage
+    namespace: backstage-testsld
   syncPolicy:
     syncOptions:
-    - CreateNamespace=false
+    - CreateNamespace=true
     automated:
-      selfHeal: true
-      prune: true
+      selfHeal: false
+      prune: false
     managedNamespaceMetadata:
       labels:
         argocd.argoproj.io/managed-by: openshift-gitops

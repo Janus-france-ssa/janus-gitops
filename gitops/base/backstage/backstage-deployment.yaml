@@ -1,13 +1,12 @@
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: backstage
+# apiVersion: v1
+# kind: Namespace
+# metadata:
+#   name: backstage
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: red-hat-developer-hub
-  namespace: backstage
 spec:
   replicas: 1
   selector:
@@ -22,6 +21,33 @@ spec:
       securityContext:
         runAsUser: 1000
       containers:
+        - resources: {}
+          terminationMessagePath: /dev/termination-log
+          name: oauth-proxy
+          ports:
+            - name: oauth-proxy
+              containerPort: 8888
+              protocol: TCP
+          imagePullPolicy: IfNotPresent
+          volumeMounts:
+            - name: backstage-tls
+              mountPath: /etc/tls/private
+          terminationMessagePolicy: File
+          image: 'registry.redhat.io/openshift4/ose-oauth-proxy:v4.12'
+          args:
+            - '-provider=openshift'
+            - '-https-address=:8888'
+            - '-http-address='
+            - '-email-domain=*'
+            - '-upstream=http://localhost:7007'
+            - '-tls-cert=/etc/tls/private/tls.crt'
+            - '-tls-key=/etc/tls/private/tls.key'
+            - '-cookie-secret="b29mZXF1b292aWU0cGhhdGFiN2lpa2FlNWVlZ2VlQjQK"'
+            - '-openshift-service-account=backstage-sa'
+            - '-openshift-ca=/var/run/secrets/kubernetes.io/serviceaccount/ca.crt'
+            - '-skip-auth-regex=^/metrics'
+            - '-skip-provider-button'
+            - '-request-logging=true'
         - name: backstage
           image: quay.io/rhdh/developer-hub-rhel9:1.0-8
           env:
@@ -91,27 +117,27 @@ apiVersion: v1
 kind: Service
 metadata:
   name: backstage-service
-  namespace: backstage
+  annotations:
+    service.alpha.openshift.io/serving-cert-secret-name: backstage-tls
 spec:
   selector:
     app: backstage
   ports:
-    - name: http
+    - name: oauth-proxy
       protocol: TCP
-      port: 80
-      targetPort: http #4180
+      port: 8888
+      targetPort: oauth-proxy
 ---
 apiVersion: route.openshift.io/v1
 kind: Route
 metadata:
   name: backstage-route
-  namespace: backstage
 spec:
   to:
     kind: Service
     name: backstage-service
   port:
-    targetPort: http
+    targetPort: oauth-proxy
   tls:
-    termination: edge
+    termination: reencrypt
 
