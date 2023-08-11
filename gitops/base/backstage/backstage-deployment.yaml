@@ -112,6 +112,10 @@ spec:
           items: 
             - key: app-config.yaml
               path: app-config.yaml
+      - name: backstage-tls
+        secret:
+          secretName: backstage-tls
+          defaultMode: 420
 ---
 apiVersion: v1
 kind: Service
