@@ -7,13 +7,13 @@ resources:
 - ../../base
 
 patches:    
-# - target:
-#     kind: Namespace
-#     name: backstage
-#   patch: |-
-#     - op: replace
-#       path: /metadata/name
-#       value: backstage-slallemand
+- target:
+    kind: Namespace
+    name: backstage
+  patch: |-
+    - op: replace
+      path: /metadata/name
+      value: backstage-slallemand
 - target: 
     kind: ServiceAccount
     name: backstage-sa
