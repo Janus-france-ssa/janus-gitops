@@ -3,7 +3,7 @@ kind: ServiceAccount
 metadata:
   name: backstage-sa
   annotations:
-    serviceaccounts.openshift.io/oauth-redirecturi.backstage: https://backstage-route-backstage.apps.rosa-paris-00.bufj.p1.openshiftapps.com/oauth/callback
+    serviceaccounts.openshift.io/oauth-redirecturi.backstage: REPLACE_ME
 ---
 kind: SecurityContextConstraints
 apiVersion: security.openshift.io/v1
@@ -19,8 +19,7 @@ fsGroup:
 supplementalGroups:
   type: RunAsAny
 users:
-  - system:serviceaccount:backstage:backstage-sa
-  - system:serviceaccount:backstage-testsld:backstage-sa
+  - system:serviceaccount:REPLACE_ME:backstage-sa
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
@@ -83,7 +82,7 @@ roleRef:
 subjects:
 - kind: ServiceAccount
   name: backstage-sa
-  namespace: backstage-testsld
+  namespace: REPLACE_ME
 ---
 kind: ClusterRole
 apiVersion: rbac.authorization.k8s.io/v1
@@ -118,4 +117,4 @@ roleRef:
 subjects:
 - kind: ServiceAccount
   name: backstage-sa
-  namespace: backstage-testsld
+  namespace: REPLACE_ME
