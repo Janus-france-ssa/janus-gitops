@@ -1,0 +1,160 @@
+app:
+  baseUrl: https://backstage-route-backstage-slallemand.apps.rosa-paris-00.bufj.p1.openshiftapps.com
+argocd:
+  #username: ${ARGOCD_USERNAME}
+  #password: ${ARGOCD_PASSWORD}
+  appLocatorMethods:
+    - instances:
+        - name: main
+          token: ${ARGO_API_TOKEN}
+          url: https://openshift-gitops-server-openshift-gitops.apps.rosa-paris-00.bufj.p1.openshiftapps.com
+      type: config
+  waitCycles: 25
+auth:
+  environment: development
+  providers:
+    github:
+      development:
+        clientId: ${GH_CLIENT_ID}
+        clientSecret: ${GH_CLIENT_SECRET}
+backend:
+  baseUrl: https://backstage-route-backstage-slallemand.apps.rosa-paris-00.bufj.p1.openshiftapps.com
+  cors:
+    origin: https://backstage-route-backstage-slallemand.apps.rosa-paris-00.bufj.p1.openshiftapps.com
+  database:
+    client: pg
+    connection:
+      host: postgres-service.backstage.svc.cluster.local
+      port: 5432
+      user: pg
+      password: redhat
+catalog:
+  locations:
+    - rules:
+        - allow:
+            - Template
+      target: https://github.com/janus-idp/software-templates/blob/main/scaffolder-templates/ansible-job/template.yaml
+      type: url
+    - rules:
+        - allow:
+            - Template
+      target: https://github.com/janus-idp/software-templates/blob/main/scaffolder-templates/app-template/template.yaml
+      type: url
+    - rules:
+        - allow:
+            - Template
+      target: https://github.com/janus-idp/software-templates/blob/main/scaffolder-templates/argocd-template/template.yaml
+      type: url
+    - rules:
+        - allow:
+            - Template
+      target: https://github.com/feven-redhat/software-templates/blob/main/scaffolder-templates/documentation-template/template.yaml
+      type: url
+    - rules:
+        - allow:
+            - Template
+      target: https://github.com/janus-idp/software-templates/blob/main/scaffolder-templates/dotnet-frontend-template/template.yaml
+      type: url
+    - rules:
+        - allow:
+            - Template
+      target: https://github.com/janus-idp/software-templates/blob/main/scaffolder-templates/go-backend-template/template.yaml
+      type: url
+    - rules:
+        - allow:
+            - Template
+      target: https://github.com/janus-idp/software-templates/blob/main/scaffolder-templates/nodejs-backend-template/template.yaml
+      type: url
+    - rules:
+        - allow:
+            - Template
+      target: https://github.com/janus-idp/software-templates/blob/main/scaffolder-templates/obc-template/template.yaml
+      type: url
+    - rules:
+        - allow:
+            - Template
+      target: https://github.com/janus-idp/software-templates/blob/main/scaffolder-templates/python-backend-template/template.yaml
+      type: url
+    - rules:
+        - allow:
+            - Template
+      target: https://github.com/janus-idp/software-templates/blob/main/scaffolder-templates/quarkus-backend-template/template.yaml
+      type: url
+    - rules:
+        - allow:
+            - Template
+      target: https://github.com/janus-idp/software-templates/blob/main/scaffolder-templates/spring-boot-backend-template/template.yaml
+      type: url
+    - rules:
+        - allow:
+            - Template
+      target: https://github.com/janus-idp/software-templates/blob/main/scaffolder-templates/go-backend-template/template.yaml
+      type: url
+    - rules:
+        - allow:
+            - Template
+      target: https://github.com/feven-redhat/software-templates/blob/main/scaffolder-templates/quarkus-web-template/template.yaml
+      type: url
+    - rules:
+        - allow:
+            - Template
+      target: https://github.com/feven-redhat/ordermanagement-template/blob/main/template.yaml
+      type: url
+  providers:
+    ocm:
+      operate-first:
+        kubernetesPluginRef: local-cluster
+        name: local
+  rules:
+    - allow:
+        - Component
+        - System
+        - API
+        - Resource
+        - Location
+        - Template
+        - User
+enabled:
+  argocd: true
+  github: true
+  kubernetes: true
+  ocm: true
+  techdocs: true
+integrations:
+  github:
+    - host: github.com
+      token: ${GH_TOKEN}
+techdocs:
+  publisher:
+    type: "awsS3"
+    awsS3:
+      bucketName: "rhdh-neve"
+      accountId: ${AWS_ID}
+      region: ${AWS_REGION}
+aws:
+  accounts:
+    - accountId: ${AWS_ID}
+      accessKeyId: ${AWS_ACCESS_KEY_ID}
+      secretAccessKey: ${AWS_SECRET_ACCESS_KEY}
+kubernetes:
+  clusterLocatorMethods:
+    - clusters:
+        - authProvider: serviceAccount
+          dashboardApp: openshift
+          dashboardUrl: https://openshift-console-openshift.openshift-console.svc.cluster.local
+          name: local-cluster
+          skipTLSVerify: true
+          url: https://kubernetes.default.svc/
+      type: config
+  customResources:
+    - apiVersion: v1
+      group: route.openshift.io
+      plural: routes
+    - apiVersion: v1beta1
+      group: tekton.dev
+      plural: pipelineruns
+    - apiVersion: v1beta1
+      group: tekton.dev
+      plural: taskruns
+  serviceLocatorMethod:
+    type: multiTenant

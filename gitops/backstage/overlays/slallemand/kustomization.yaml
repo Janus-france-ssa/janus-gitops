@@ -6,6 +6,12 @@ namespace: backstage-slallemand
 resources:
 - ../../base
 
+configMapGenerator:
+- files:
+  - app-config.yaml
+  name: app-config
+  behavior: replace
+
 patches:    
 - target:
     kind: Namespace

@@ -1,17 +1,17 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: kepler
+  name: cluster-operators
   namespace: openshift-gitops
 spec:
-  project: backstage
+  project: default
   source:
     repoURL: https://github.com/Janus-france-ssa/janus-gitops.git
-    targetRevision: slallemand/openshift-authent
-    path: gitops/kepler/base
+    targetRevision: master
+    path: gitops/cluster-operators/base
   destination:
     server: https://kubernetes.default.svc
-    namespace: kepler
+    #namespace: backstage
   syncPolicy:
     syncOptions:
     - CreateNamespace=false
