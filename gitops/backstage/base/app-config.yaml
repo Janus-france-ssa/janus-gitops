@@ -24,7 +24,7 @@ backend:
   database:
     client: pg
     connection:
-      host: postgres-service.backstage.svc.cluster.local
+      host: postgres-service.REPLACE_ME.svc.cluster.local
       port: 5432
       user: pg
       password: redhat
