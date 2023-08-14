@@ -21,33 +21,6 @@ spec:
       securityContext:
         runAsUser: 1000
       containers:
-        - resources: {}
-          terminationMessagePath: /dev/termination-log
-          name: oauth-proxy
-          ports:
-            - name: oauth-proxy
-              containerPort: 8888
-              protocol: TCP
-          imagePullPolicy: IfNotPresent
-          volumeMounts:
-            - name: backstage-tls
-              mountPath: /etc/tls/private
-          terminationMessagePolicy: File
-          image: 'registry.redhat.io/openshift4/ose-oauth-proxy:v4.12'
-          args:
-            - '-provider=openshift'
-            - '-https-address=:8888'
-            - '-http-address='
-            - '-email-domain=*'
-            - '-upstream=http://localhost:7007'
-            - '-tls-cert=/etc/tls/private/tls.crt'
-            - '-tls-key=/etc/tls/private/tls.key'
-            - '-cookie-secret="b29mZXF1b292aWU0cGhhdGFiN2lpa2FlNWVlZ2VlQjQK"'
-            - '-openshift-service-account=backstage-sa'
-            - '-openshift-ca=/var/run/secrets/kubernetes.io/serviceaccount/ca.crt'
-            - '-skip-auth-regex=^/metrics'
-            - '-skip-provider-button'
-            - '-request-logging=true'
         - name: backstage
           image: quay.io/rhdh/developer-hub-rhel9:1.0-8
           env:
@@ -103,6 +76,33 @@ spec:
           args:
             - '--config'
             - /app/app-config-from-configmap.yaml
+        - resources: {}
+          terminationMessagePath: /dev/termination-log
+          name: oauth-proxy
+          ports:
+            - name: oauth-proxy
+              containerPort: 8888
+              protocol: TCP
+          imagePullPolicy: IfNotPresent
+          volumeMounts:
+            - name: backstage-tls
+              mountPath: /etc/tls/private
+          terminationMessagePolicy: File
+          image: 'registry.redhat.io/openshift4/ose-oauth-proxy:v4.12'
+          args:
+            - '-provider=openshift'
+            - '-https-address=:8888'
+            - '-http-address='
+            - '-email-domain=*'
+            - '-upstream=http://localhost:7007'
+            - '-tls-cert=/etc/tls/private/tls.crt'
+            - '-tls-key=/etc/tls/private/tls.key'
+            - '-cookie-secret="b29mZXF1b292aWU0cGhhdGFiN2lpa2FlNWVlZ2VlQjQK"'
+            - '-openshift-service-account=backstage-sa'
+            - '-openshift-ca=/var/run/secrets/kubernetes.io/serviceaccount/ca.crt'
+            - '-skip-auth-regex=^/metrics'
+            - '-skip-provider-button'
+            - '-request-logging=true'
       imagePullSecrets:
       - name: rhdh-pull-secret
       volumes:
@@ -111,7 +111,6 @@ spec:
           name: app-config
           items: 
             - key: app-config.yaml
-              path: app-config.yaml
       - name: backstage-tls
         secret:
           secretName: backstage-tls
