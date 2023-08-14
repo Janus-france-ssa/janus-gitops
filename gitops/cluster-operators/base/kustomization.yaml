@@ -6,3 +6,4 @@ resources:
 - ./multiclusterhub.yaml
 - ./ns.yaml
 - ./sub.yaml
+- ./project.yaml
