@@ -48,11 +48,6 @@ catalog:
     - rules:
         - allow:
             - Template
-      target: https://github.com/feven-redhat/software-templates/blob/main/scaffolder-templates/documentation-template/template.yaml
-      type: url
-    - rules:
-        - allow:
-            - Template
       target: https://github.com/janus-idp/software-templates/blob/main/scaffolder-templates/dotnet-frontend-template/template.yaml
       type: url
     - rules:
@@ -93,12 +88,7 @@ catalog:
     - rules:
         - allow:
             - Template
-      target: https://github.com/feven-redhat/software-templates/blob/main/scaffolder-templates/quarkus-web-template/template.yaml
-      type: url
-    - rules:
-        - allow:
-            - Template
-      target: https://github.com/feven-redhat/ordermanagement-template/blob/main/template.yaml
+      target: https://github.com/slallemand/ordermanagement-template/blob/main/template.yaml
       type: url
   providers:
     ocm:
