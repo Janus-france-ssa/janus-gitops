@@ -1,5 +1,5 @@
 app:
-  baseUrl: https://backstage-route-backstage-slallemand.apps.rosa-paris-00.bufj.p1.openshiftapps.com
+  baseUrl: https://backstage-route-backstage-slallemand.apps.rosa-dublin-00.vqqh.p1.openshiftapps.com
 argocd:
   #username: ${ARGOCD_USERNAME}
   #password: ${ARGOCD_PASSWORD}
@@ -7,7 +7,7 @@ argocd:
     - instances:
         - name: main
           token: ${ARGO_API_TOKEN}
-          url: https://openshift-gitops-server-openshift-gitops.apps.rosa-paris-00.bufj.p1.openshiftapps.com
+          url: https://openshift-gitops-server-openshift-gitops.apps.rosa-dublin-00.vqqh.p1.openshiftapps.com
       type: config
   waitCycles: 25
 auth:
@@ -18,9 +18,9 @@ auth:
         clientId: ${GH_CLIENT_ID}
         clientSecret: ${GH_CLIENT_SECRET}
 backend:
-  baseUrl: https://backstage-route-backstage-slallemand.apps.rosa-paris-00.bufj.p1.openshiftapps.com
+  baseUrl: https://backstage-route-backstage-slallemand.apps.rosa-dublin-00.vqqh.p1.openshiftapps.com
   cors:
-    origin: https://backstage-route-backstage-slallemand.apps.rosa-paris-00.bufj.p1.openshiftapps.com
+    origin: https://backstage-route-backstage-slallemand.apps.rosa-dublin-00.vqqh.p1.openshiftapps.com
   database:
     client: pg
     connection:
