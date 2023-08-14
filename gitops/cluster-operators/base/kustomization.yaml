@@ -3,5 +3,6 @@ kind: Kustomization
 
 resources:
 - ./ClusterRoleBinding.yaml
+- ./multiclusterhub.yaml
 - ./ns.yaml
 - ./sub.yaml

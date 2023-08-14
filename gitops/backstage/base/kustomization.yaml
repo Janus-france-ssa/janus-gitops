@@ -8,7 +8,6 @@ configMapGenerator:
   behavior: create
 
 resources:
-- ./multiclusterhub.yaml
 - ./backstage-deployment.yaml
 - ./backstage-sa.yaml
 - ./postgres-deployment.yaml
