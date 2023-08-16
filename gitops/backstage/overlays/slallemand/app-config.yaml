@@ -113,7 +113,7 @@ enabled:
   argocd: true
   github: true
   githubOrg: true
-  keycloak: true
+  keycloak: false
   kubernetes: true
   ocm: true
   techdocs: true
