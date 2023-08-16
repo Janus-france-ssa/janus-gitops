@@ -112,6 +112,8 @@ catalog:
 enabled:
   argocd: true
   github: true
+  githubOrg: true
+  keycloak: true
   kubernetes: true
   ocm: true
   techdocs: true
