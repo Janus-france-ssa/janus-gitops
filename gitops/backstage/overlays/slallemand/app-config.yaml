@@ -15,7 +15,6 @@ argocd:
 auth:
   providers:
     oauth2Proxy:
-      development: {}
 
 backend:
   baseUrl: https://backstage-route-backstage-slallemand.apps.rosa-dublin-00.vqqh.p1.openshiftapps.com
