@@ -13,19 +13,18 @@ argocd:
   waitCycles: 25
 
 auth:
-  environment: development
   providers:
-    github:
-      development:
-        clientId: ${GH_CLIENT_ID}
-        clientSecret: ${GH_CLIENT_SECRET}
     oauth2Proxy:
       development: {}
 
 backend:
   baseUrl: https://backstage-route-backstage-slallemand.apps.rosa-dublin-00.vqqh.p1.openshiftapps.com
+  csp:
+    connect-src: ["'self'", 'http:', 'https:']
   cors:
     origin: https://backstage-route-backstage-slallemand.apps.rosa-dublin-00.vqqh.p1.openshiftapps.com
+    methods: [GET, POST, PUT, DELETE]
+    credentials: true
   database:
     client: pg
     connection:
