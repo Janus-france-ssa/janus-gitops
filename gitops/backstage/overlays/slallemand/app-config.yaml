@@ -1,5 +1,6 @@
 app:
   baseUrl: https://backstage-route-backstage-slallemand.apps.rosa-dublin-00.vqqh.p1.openshiftapps.com
+
 argocd:
   #username: ${ARGOCD_USERNAME}
   #password: ${ARGOCD_PASSWORD}
@@ -10,6 +11,7 @@ argocd:
           url: https://openshift-gitops-server-openshift-gitops.apps.rosa-dublin-00.vqqh.p1.openshiftapps.com
       type: config
   waitCycles: 25
+
 auth:
   environment: development
   providers:
@@ -17,6 +19,9 @@ auth:
       development:
         clientId: ${GH_CLIENT_ID}
         clientSecret: ${GH_CLIENT_SECRET}
+    oauth2Proxy:
+      development: {}
+
 backend:
   baseUrl: https://backstage-route-backstage-slallemand.apps.rosa-dublin-00.vqqh.p1.openshiftapps.com
   cors:
@@ -28,6 +33,7 @@ backend:
       port: 5432
       user: pg
       password: redhat
+
 catalog:
   locations:
     - rules:
@@ -104,16 +110,19 @@ catalog:
         - Location
         - Template
         - User
+
 enabled:
   argocd: true
   github: true
   kubernetes: true
   ocm: true
   techdocs: true
+
 integrations:
   github:
     - host: github.com
       token: ${GH_TOKEN}
+
 techdocs:
   publisher:
     type: "awsS3"
@@ -121,11 +130,13 @@ techdocs:
       bucketName: "rhdh-neve"
       accountId: ${AWS_ID}
       region: ${AWS_REGION}
+
 aws:
   accounts:
     - accountId: ${AWS_ID}
       accessKeyId: ${AWS_ACCESS_KEY_ID}
       secretAccessKey: ${AWS_SECRET_ACCESS_KEY}
+
 kubernetes:
   clusterLocatorMethods:
     - clusters:
