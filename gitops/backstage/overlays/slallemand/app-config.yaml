@@ -112,7 +112,7 @@ catalog:
 enabled:
   argocd: true
   github: true
-  githubOrg: true
+  githubOrg: false
   keycloak: false
   kubernetes: true
   ocm: true
