@@ -7,3 +7,4 @@ resources:
 - ./ns.yaml
 - ./sub.yaml
 - ./project.yaml
+- ./argocd.yaml
