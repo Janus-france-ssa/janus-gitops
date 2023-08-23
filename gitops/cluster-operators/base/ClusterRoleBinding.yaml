@@ -7,7 +7,7 @@ subjects:
     name: openshift-gitops-argocd-application-controller
     namespace: openshift-gitops 
   - kind: ServiceAccount
-    name: openshift-gitops-argocd-application-controller
+    name: argocd-argocd-application-controller
     namespace: janus-argocd 
 roleRef:
   apiGroup: rbac.authorization.k8s.io
