@@ -1,7 +1,11 @@
 app:
   baseUrl: https://backstage-route-backstage-slallemand.apps.rosa-dublin-00.vqqh.p1.openshiftapps.com
 
+organization:
+  name: "Red Hat Developer Hub"
+
 argocd:
+  baseUrl: https://openshift-gitops-server-openshift-gitops.apps.rosa-dublin-00.vqqh.p1.openshiftapps.com
   appLocatorMethods:
     - instances:
         - name: main
