@@ -65,6 +65,11 @@ catalog:
     - rules:
         - allow:
             - Template
+      target: https://github.com/slallemand/software-templates-redhat-gpte/blob/main/scaffolder-templates/quarkus-web-template/template.yaml
+      type: url
+    - rules:
+        - allow:
+            - Template
       target: https://github.com/slallemand/ordermanagement-template/blob/main/template.yaml
       type: url
   providers:
