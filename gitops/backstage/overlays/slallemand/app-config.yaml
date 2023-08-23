@@ -5,12 +5,12 @@ organization:
   name: "Red Hat Developer Hub"
 
 argocd:
-  baseUrl: https://openshift-gitops-server-openshift-gitops.apps.rosa-dublin-00.vqqh.p1.openshiftapps.com
+  baseUrl: https://argocd-server-janus-argocd.apps.rosa-dublin-00.vqqh.p1.openshiftapps.com
   appLocatorMethods:
     - instances:
         - name: main
           token: ${ARGO_API_TOKEN}
-          url: https://openshift-gitops-server-openshift-gitops.apps.rosa-dublin-00.vqqh.p1.openshiftapps.com
+          url: https://argocd-server-janus-argocd.apps.rosa-dublin-00.vqqh.p1.openshiftapps.com
       type: config
   waitCycles: 25
 
@@ -46,26 +46,26 @@ backend:
 
 catalog:
   locations:
-    - rules:
-        - allow:
-            - Template
-      target: https://github.com/slallemand/software-templates/blob/main/scaffolder-templates/app-template/template.yaml
-      type: url
-    - rules:
-        - allow:
-            - Template
-      target: https://github.com/slallemand/software-templates/blob/main/scaffolder-templates/argocd-template/template.yaml
-      type: url
-    - rules:
-        - allow:
-            - Template
-      target: https://github.com/slallemand/software-templates/blob/main/scaffolder-templates/quarkus-backend-template/template.yaml
-      type: url
-    - rules:
-        - allow:
-            - Template
-      target: https://github.com/slallemand/software-templates/blob/main/scaffolder-templates/quarkus-tekton-gitops-template/template.yaml
-      type: url
+    # - rules:
+    #     - allow:
+    #         - Template
+    #   target: https://github.com/slallemand/software-templates/blob/main/scaffolder-templates/app-template/template.yaml
+    #   type: url
+    # - rules:
+    #     - allow:
+    #         - Template
+    #   target: https://github.com/slallemand/software-templates/blob/main/scaffolder-templates/argocd-template/template.yaml
+    #   type: url
+    # - rules:
+    #     - allow:
+    #         - Template
+    #   target: https://github.com/slallemand/software-templates/blob/main/scaffolder-templates/quarkus-backend-template/template.yaml
+    #   type: url
+    # - rules:
+    #     - allow:
+    #         - Template
+    #   target: https://github.com/slallemand/software-templates/blob/main/scaffolder-templates/quarkus-tekton-gitops-template/template.yaml
+    #   type: url
     - rules:
         - allow:
             - Template

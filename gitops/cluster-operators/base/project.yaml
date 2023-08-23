@@ -20,3 +20,26 @@ spec:
   sourceRepos:
     - '*'
 status: {}
+---
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: janus 
+  namespace: janus-argocd
+spec:
+  clusterResourceWhitelist:
+    - group: '*'
+      kind: '*'
+  destinations:
+    - namespace: '*'
+      server: '*'
+  roles:
+    - name: automation
+      policies:
+        - 'p, proj:janus:automation, applications, get, janus/*, allow'
+        - 'p, proj:janus:automation, applications, create, janus/*, allow'
+        - 'p, proj:janus:automation, applications, update, janus/*, allow'
+        - 'p, proj:janus:automation, applications, delete, janus/*, allow'
+  sourceRepos:
+    - '*'
+status: {}
