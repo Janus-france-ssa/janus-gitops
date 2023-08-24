@@ -76,6 +76,11 @@ catalog:
             - Template
       target: https://github.com/slallemand/ordermanagement-template/blob/main/template.yaml
       type: url
+    - rules: 
+        - allow:
+            - Template
+      target: https://github.com/RedHat-Summit-Connect-France-2023/software-templates/blob/main/showcase-templates.yaml
+      type: url
   providers:
     ocm:
       operate-first:
