@@ -40,15 +40,15 @@ backend:
       user: pg
       password: redhat
 
-# proxy:
-#   '/argocd/api':
-#     # url to the api of your hosted argoCD instance
-#     target: https://openshift-gitops-server-openshift-gitops.apps.rosa-dublin-00.vqqh.p1.openshiftapps.com/api/v1/
-#     changeOrigin: true
-#     # this line is required if your hosted argoCD instance has self-signed certificate
-#     secure: false
-#     headers:
-#       Cookie: ${ARGO_API_TOKEN}
+proxy:
+  '/argocd/api':
+    # url to the api of your hosted argoCD instance
+    target: https://openshift-gitops-server-openshift-gitops.apps.rosa-dublin-00.vqqh.p1.openshiftapps.com/api/v1/
+    changeOrigin: true
+    # this line is required if your hosted argoCD instance has self-signed certificate
+    secure: false
+    headers:
+      Cookie: ${ARGO_API_TOKEN}
 
 catalog:
   locations:
