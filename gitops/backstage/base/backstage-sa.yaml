@@ -29,7 +29,7 @@ metadata:
     "helm.sh/hook-weight": "-2"
 rules:
   - apiGroups:
-      - '*'
+      - ''
     resources:
       - pods
       - pods/log
