@@ -153,5 +153,9 @@ kubernetes:
     - apiVersion: v1beta1
       group: tekton.dev
       plural: taskruns
+    - group: 'org.eclipse.che'
+      apiVersion: 'v2'
+      plural: 'checlusters'
+
   serviceLocatorMethod:
     type: multiTenant
