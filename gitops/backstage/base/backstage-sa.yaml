@@ -32,6 +32,7 @@ rules:
       - '*'
     resources:
       - pods
+      - pods/log
       - configmaps
       - services
       - deployments
@@ -65,6 +66,7 @@ rules:
   - apiGroups:
       - tekton.dev
     resources:
+      - pipelines
       - pipelineruns
       - taskruns
     verbs:
