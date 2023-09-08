@@ -30,21 +30,21 @@ metadata:
 rules:
   - apiGroups:
       - route.openshift.io
-  resources:
-    - routes
-  verbs:
-    - get
-    - list
+    resources:
+      - routes
+    verbs:
+      - get
+      - list
 
   - apiGroups:
     - ''
-  resources:
-    - pods
-    - pods/log
-  verbs:
-    - get
-    - list
-    - watch
+    resources:
+      - pods
+      - pods/log
+    verbs:
+      - get
+      - list
+      - watch
 
   - apiGroups:
       - 'org.eclipse.che'
