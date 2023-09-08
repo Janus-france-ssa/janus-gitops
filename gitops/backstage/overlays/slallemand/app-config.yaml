@@ -149,6 +149,9 @@ kubernetes:
       plural: pipelineruns
     - apiVersion: v1beta1
       group: tekton.dev
+      plural: pipelines
+    - apiVersion: v1beta1
+      group: tekton.dev
       plural: taskruns
   serviceLocatorMethod:
     type: multiTenant
